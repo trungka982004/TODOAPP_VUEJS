@@ -13,7 +13,12 @@ export const useTodoStore = defineStore("todo", {
         done: false
       })
     }, 
-
+    editTodo(id, updateText) {
+      const todo = this.todos.find(t => t.id === id)
+      if(todo && updateText.trim()) {
+        todo.text = updateText
+      }
+    },
     toggleTodo(id) {
       const todo = this.todos.find(t => t.id === id)
       if (todo) todo.done = !todo.done

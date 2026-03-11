@@ -1,8 +1,8 @@
 <script setup>
 import TodoInput from "../components/TodoInput.vue"
 import TodoList from "../components/TodoList.vue"
-import TheHeader from "../components/base/TheHeader.vue"
-import TheFooter from "../components/base/TheFooter.vue"
+import TheHeader from "../components/layouts/TheHeader.vue"
+import TheFooter from "../components/layouts/TheFooter.vue"
 </script>
 
 <template>
