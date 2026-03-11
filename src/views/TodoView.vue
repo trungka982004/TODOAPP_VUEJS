@@ -7,7 +7,7 @@ import BaseCard from "../components/base/BaseCard.vue"
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 px-4">
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-8 px-4 transition-colors duration-300">
     <div class="max-w-2xl mx-auto">
       <!-- Header -->
       <TheHeader class="justify-center align-center"/>

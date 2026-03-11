@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/* Setup class-based Dark Mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Ensure body has dark text color by default in light mode */
+body {
+  color: #0f172a; /* slate-900 */
+}
+
+/* Dark mode: white text when .dark class is on <html> */
+.dark body {
+  color: #f8fafc; /* slate-50 */
+}
+
+
 @layer components {
   .btn {
     @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
