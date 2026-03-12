@@ -20,7 +20,7 @@ defineEmits(['toggle'])
     >
       <svg
         v-if="checked"
-        class="w-4 h-4 text-white"
+        class="checkbox-icon"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -34,3 +34,11 @@ defineEmits(['toggle'])
       </svg>
     </div>
 </template>
+
+<style scoped>
+@reference "../../assets/main.css";
+
+.checkbox-icon {
+  @apply w-4 h-4 text-white;
+}
+</style>

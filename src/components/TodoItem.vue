@@ -50,9 +50,7 @@ const cancelEdit = () => {
 </script>
 
 <template>
-  <div
-    class="flex items-center gap-3 p-4 rounded-lg bg-white border border-slate-200 hover:border-sky-400 hover:shadow-md transition-all duration-200 group"
-  >
+  <div class="todo-item group">
     <!-- Checkbox (Hidden while editing) -->
     <BaseCheckBox 
       v-if="!isEditing"
@@ -69,11 +67,11 @@ const cancelEdit = () => {
         @keyup.enter="saveEdit"
         @keyup.esc="cancelEdit"
         @blur="saveEdit"
-        class="w-full bg-slate-50 border-b-2 border-sky-500 outline-none px-2 py-1 text-sm font-medium text-slate-900"
+        class="todo-input"
       />
       <span
         v-else
-        class="block text-sm transition-all duration-200"
+        class="todo-text"
         :class="[
           todo.done
             ? 'line-through text-slate-400'
@@ -91,10 +89,10 @@ const cancelEdit = () => {
         <BaseButton 
           variant="modify" 
           @click="startEdit" 
-          class="p-2 opacity-0 group-hover:opacity-100 transition-opacity"
+          class="todo-action-button"
           title="Edit"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="todo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
           </svg>
         </BaseButton>
@@ -102,10 +100,10 @@ const cancelEdit = () => {
         <BaseButton 
           variant="danger" 
           @click="todoStore.removeTodo(todo.id)" 
-          class="p-2 opacity-0 group-hover:opacity-100 transition-opacity"
+          class="todo-action-button"
           title="Delete"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="todo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
           </svg>
         </BaseButton>
@@ -116,10 +114,10 @@ const cancelEdit = () => {
         <BaseButton 
           variant="primary" 
           @click="saveEdit" 
-          class="p-2"
+          class="todo-action-button"
           title="Save"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="todo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
           </svg>
         </BaseButton>
@@ -127,10 +125,10 @@ const cancelEdit = () => {
         <BaseButton 
           variant="danger" 
           @click="cancelEdit" 
-          class="p-2"
+          class="todo-action-button"
           title="Cancel"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="todo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </BaseButton>
@@ -140,4 +138,25 @@ const cancelEdit = () => {
 </template>
 
 <style scoped>
+@reference "../assets/main.css";
+
+.todo-item {
+  @apply flex items-center gap-3 p-4 rounded-lg bg-white border border-slate-200 hover:border-sky-400 hover:shadow-md transition-all duration-200;
+}
+
+.todo-input {
+  @apply w-full bg-slate-50 border-b-2 border-sky-500 outline-none px-2 py-1 text-sm font-medium text-slate-900;
+}
+
+.todo-text {
+  @apply block text-sm transition-all duration-200;
+}
+
+.todo-action-button {
+  @apply p-2 opacity-0 group-hover:opacity-100 transition-opacity;
+}
+
+.todo-icon {
+  @apply w-5 h-5;
+}
 </style>

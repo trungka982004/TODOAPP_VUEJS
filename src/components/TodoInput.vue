@@ -35,7 +35,7 @@ const handleKeyDown = (e) => {
         class="px-6 whitespace-nowrap hover:shadow-lg"
       >
         Add Task
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="todo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
         </svg>
       </BaseButton>
@@ -47,4 +47,9 @@ const handleKeyDown = (e) => {
 </template>
 
 <style scoped>
+@reference "../assets/main.css";
+
+.todo-icon {
+  @apply w-5 h-5;
+}
 </style>
