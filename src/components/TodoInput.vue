@@ -30,6 +30,7 @@ const handleKeyDown = (e) => {
         class="input-field flex-1"
       />
       <BaseButton 
+        variant="primary"
         @click="addTodo"
         class="px-6 whitespace-nowrap hover:shadow-lg"
       >

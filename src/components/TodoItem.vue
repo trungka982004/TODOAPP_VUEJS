@@ -5,7 +5,18 @@ import BaseButton from "./base/BaseButton.vue"
 import BaseCheckBox from "./base/BaseCheckBox.vue"
 
 const props = defineProps({
-  todo: Object
+  todo: {
+    type: Object,
+    required: true,
+    default: () => ({
+      id: 0,
+      text: '',
+      done: false
+    }),
+    validator: (value) => {
+      return typeof value.id === 'number' && typeof value.text === 'string' && typeof value.done === 'boolean'
+    }
+  }
 })
 
 const todoStore = useTodoStore()
