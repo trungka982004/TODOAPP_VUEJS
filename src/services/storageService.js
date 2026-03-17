@@ -1,6 +1,6 @@
 /**
- * Mock Service Layer để quản lý LocalStorage
- * Giúp trừu tượng hóa việc lưu trữ dữ liệu
+ * Mock Service Layer to manage LocalStorage
+ * Helps abstract data storage operations
  */
 
 const STORAGE_KEYS = {
@@ -10,18 +10,18 @@ const STORAGE_KEYS = {
 }
 
 export const storageService = {
-  // Lấy dữ liệu theo Key
+  // Fetch data by Key
   fetch(key) {
     const data = localStorage.getItem(key)
     return data ? JSON.parse(data) : null
   },
 
-  // Lưu dữ liệu theo Key
+  // Save data by Key
   save(key, data) {
     localStorage.setItem(key, JSON.stringify(data))
   },
 
-  // Các hàm tiện ích riêng cho từng loại dữ liệu (Tương lai có thể dùng API ở đây)
+  // Utility functions for each data type (Could use APIs here in the future)
   getGoals() {
     return this.fetch(STORAGE_KEYS.GOALS) || []
   },

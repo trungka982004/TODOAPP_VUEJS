@@ -1,23 +1,26 @@
 <script setup>
-import { onMounted } from 'vue'
-import { useSettingStore } from './stores/settingStore'
 import AppLayout from './components/layouts/AppLayout.vue'
-import { RouterView } from 'vue-router'
-const settingStore = useSettingStore()
+import { useRoute, RouterView } from 'vue-router'
 
-// Sync 'dark' class with store on app startup
-onMounted(() => {
-  settingStore.loadSettings()
-})
+const route = useRoute()
 </script> 
 
 <template>
   <div id="app-container" class="min-h-screen bg-slate-50">
-    <AppLayout>
+    <!-- RENDER WITHOUT LAYOUT FOR GUEST PAGES (LOGIN/REGISTER) -->
+    <template v-if="route.meta.requiresGuest">
       <RouterView />
-    </AppLayout>
+    </template>
+
+    <!-- RENDER WITH LAYOUT FOR AUTHORIZED PAGES -->
+    <template v-else>
+      <AppLayout>
+        <RouterView />
+      </AppLayout>
+    </template>
   </div>
 </template>
+
 
 <style>
 #app {

@@ -1,5 +1,5 @@
 <script setup>
-import { storeToRefs } from "pinia"
+import { onMounted } from 'vue'
 import { useGoalStore } from "../stores/goalStore"
 import { useHabitStore } from "../stores/habitStore"
 import BaseCard from "../components/base/BaseCard.vue"
@@ -9,8 +9,10 @@ import HabitList from "../components/habits/HabitList.vue"
 const goalStore = useGoalStore()
 const habitStore = useHabitStore()
 
-const { progress: goalProgress, totalCount: goalCount } = storeToRefs(goalStore)
-const { progress: habitProgress, totalCount: habitCount } = storeToRefs(habitStore)
+onMounted(() => {
+  if (goalStore.loadGoals) goalStore.loadGoals()
+  if (habitStore.loadHabits) habitStore.loadHabits()
+})
 </script>
 
 <template>

@@ -3,9 +3,14 @@ import { ref, computed, watch } from 'vue'
 import { storageService } from '../services/storageService'
 
 export const useGoalStore = defineStore("goal", () => {
-  // State: Sử dụng storageService để lấy dữ liệu ban đầu
   const goals = ref(storageService.getGoals())
   const filter = ref('all')
+
+  const loadGoals = () => {
+    const data = storageService.getGoals();
+    // Empty old elements and spread new data to maintain Proxy reactivity
+    goals.value.splice(0, goals.value.length, ...data);
+  }
 
   // Getters
   const filteredGoals = computed(() => {
@@ -59,7 +64,7 @@ export const useGoalStore = defineStore("goal", () => {
     filter.value = newFilter
   }
 
-  // Watch: Tự động lưu vào LocalStorage thông qua service khi có thay đổi
+  // Automatically sync goals to LocalStorage on change
   watch(goals, (newGoals) => {
     storageService.saveGoals(newGoals)
   }, { deep: true })
@@ -67,6 +72,7 @@ export const useGoalStore = defineStore("goal", () => {
   return {
     goals, filter,
     filteredGoals, totalCount, completedCount, progress,
-    addGoal, editGoal, toggleGoal, removeGoal, clearAll, setFilter
+    addGoal, editGoal, toggleGoal, removeGoal, clearAll, setFilter,
+    loadGoals
   }
 })

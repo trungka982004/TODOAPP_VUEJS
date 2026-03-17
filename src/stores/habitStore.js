@@ -7,6 +7,12 @@ export const useHabitStore = defineStore("habit", () => {
   const habits = ref(storageService.getHabits())
   const filter = ref('all')
 
+  const loadHabits = () => {
+    const data = storageService.getHabits();
+    // Empty old elements and spread new data to maintain Proxy reactivity
+    habits.value.splice(0, habits.value.length, ...data);
+  }
+
   // Getters
   const filteredHabits = computed(() => {
     if (filter.value === "active") return habits.value.filter((h) => !h.done)
@@ -29,7 +35,7 @@ export const useHabitStore = defineStore("habit", () => {
         id: Date.now(),
         text: text,
         done: false,
-        streak: 0 // Thêm thuộc tính streak riêng cho Habit
+        streak: 0
       })
     }
   }
@@ -68,6 +74,7 @@ export const useHabitStore = defineStore("habit", () => {
   return {
     habits, filter,
     filteredHabits, totalCount, completedCount, progress,
-    addHabit, editHabit, toggleHabit, removeHabit, clearAll, setFilter
+    addHabit, editHabit, toggleHabit, removeHabit, clearAll, setFilter,
+    loadHabits
   }
 })
