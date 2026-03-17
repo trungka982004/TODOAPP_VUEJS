@@ -30,7 +30,7 @@ onMounted(() => {
           <RouterLink to="/goals" class="text-sm font-semibold text-indigo-600 hover:text-indigo-700">View All</RouterLink>
         </div>
         <BaseCard>
-          <GoalList />
+          <GoalList :limit="3" />
         </BaseCard>
       </section>
 
@@ -41,7 +41,7 @@ onMounted(() => {
           <RouterLink to="/habits" class="text-sm font-semibold text-amber-600 hover:text-amber-700">View All</RouterLink>
         </div>
         <BaseCard>
-          <HabitList />
+          <HabitList :limit="3" />
         </BaseCard>
       </section>
     </div>

@@ -7,6 +7,13 @@ import BaseProgressBar from "../base/BaseProgressBar.vue"
 
 const habitStore = useHabitStore()
 const { filteredHabits, totalCount, progress } = storeToRefs(habitStore)
+
+const props = defineProps({
+  limit: {
+    type: Number,
+    default: 0
+  }
+})
 </script>
 
 <template>
@@ -17,7 +24,7 @@ const { filteredHabits, totalCount, progress } = storeToRefs(habitStore)
       :progress="progress"
       label="habit Completion Progress"
     />
-    <habitFilters />
+    <habitFilters v-if="!limit" />
     <!-- habit Items List -->
     <transition-group
       v-if="filteredHabits.length > 0"
@@ -26,7 +33,7 @@ const { filteredHabits, totalCount, progress } = storeToRefs(habitStore)
       class="space-y-3"
     >
       <habitItem
-        v-for="habit in filteredHabits"
+        v-for="habit in (limit ? filteredHabits.slice(0, limit) : filteredHabits)"
         :key="habit.id"
         :habit="habit"
       />

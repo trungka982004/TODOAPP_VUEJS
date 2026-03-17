@@ -7,6 +7,13 @@ import BaseProgressBar from "../base/BaseProgressBar.vue"
 
 const goalStore = useGoalStore()
 const { filteredGoals, totalCount, progress } = storeToRefs(goalStore)
+
+const props = defineProps({
+  limit: {
+    type: Number,
+    default: 0
+  }
+})
 </script>
 
 <template>
@@ -17,7 +24,7 @@ const { filteredGoals, totalCount, progress } = storeToRefs(goalStore)
       :progress="progress"
       label="Goal Completion Progress"
     />
-    <GoalFilters />
+    <GoalFilters v-if="!limit" />
     <!-- Goal Items List -->
     <transition-group
       v-if="filteredGoals.length > 0"
@@ -26,7 +33,7 @@ const { filteredGoals, totalCount, progress } = storeToRefs(goalStore)
       class="space-y-3"
     >
       <GoalItem
-        v-for="goal in filteredGoals"
+        v-for="goal in (limit ? filteredGoals.slice(0, limit) : filteredGoals)"
         :key="goal.id"
         :goal="goal"
       />

@@ -18,8 +18,8 @@ Bắt đầu bằng việc dọn dẹp và tổ chức lại dự án Todo hiệ
 ## Phase 1: Minimum Viable Product (MVP)
 Hoàn thành các luồng chức năng tối thiểu để ứng dụng chạy được.
 - [x] **Task 1.1:** Phát triển tính năng Authentication (Đăng ký, Đăng nhập, Đăng xuất - xử lý Mock/Local).
-- [ ] **Task 1.2:** Xây dựng module Quản lý Mục tiêu - Goals (View, Create, Edit, Delete).
-- [ ] **Task 1.3:** Xây dựng module Quản lý Thói quen - Habits (View, Create, Nút Check hoàn thành hàng ngày).
+- [x] **Task 1.2:** Xây dựng module Quản lý Mục tiêu - Goals (View, Create, Edit, Delete).
+- [x] **Task 1.3:** Xây dựng module Quản lý Thói quen - Habits (View, Create, Nút Check hoàn thành hàng ngày).
 - [ ] **Task 1.4:** Thiết kế và xây dựng trang `DashboardView` (Hiển thị list Habits hôm nay, tổng quan 1 vài Goals).
 - [ ] **Task 1.5:** Cấu hình và kết nối hệ thống Vue Router liên kết tất cả các trang của Phase 1.
 
