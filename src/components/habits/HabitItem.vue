@@ -52,6 +52,25 @@ const cancelEdit = () => {
   editText.value = props.habit.text
   isEditing.value = false
 }
+
+// Calendar tracking
+const showCalendar = ref(false)
+
+const getLast30Days = () => {
+  const dates = []
+  const today = new Date()
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date(today)
+    d.setDate(today.getDate() - i)
+    dates.push({
+      date: d.toISOString().split('T')[0],
+      day: d.getDate()
+    })
+  }
+  return dates
+}
+
+const last30Days = ref(getLast30Days())
 </script>
 
 <template>
@@ -140,6 +159,45 @@ const cancelEdit = () => {
           </svg>
         </BaseButton>
       </template>
+      
+      <!-- Show Calendar Button -->
+      <BaseButton 
+        v-if="!isEditing"
+        variant="primary" 
+        @click="showCalendar = !showCalendar" 
+        class="p-2 transition-opacity"
+        :class="[ showCalendar ? 'opacity-100 bg-slate-100' : 'opacity-0 group-hover:opacity-100' ]"
+        title="Habit Calendar"
+      >
+        <svg class="habit-icon" :class="{ 'text-sky-500': showCalendar }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+      </BaseButton>
+    </div>
+  </div>
+
+  <!-- Calendar Activity Box -->
+  <div v-if="showCalendar" class="pl-4 pr-4 py-3 bg-slate-50 border border-t-0 border-slate-200 rounded-b-lg -mt-2 mb-2">
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Last 30 Days</span>
+      <span class="text-xs text-slate-500 font-medium whitespace-nowrap">
+        {{ (habit.completedDates || []).length }} completions
+      </span>
+    </div>
+    <div class="grid grid-cols-7 sm:grid-cols-10 md:grid-cols-15 gap-1.5">
+      <div 
+        v-for="day in last30Days" 
+        :key="day.date"
+        class="w-6 h-6 rounded flex items-center justify-center text-[10px] font-medium transition-colors cursor-help"
+        :class="[
+          (habit.completedDates || []).includes(day.date)
+            ? 'bg-emerald-400 text-white hover:bg-emerald-500'
+            : 'bg-slate-200 text-slate-500 hover:bg-slate-300'
+        ]"
+        :title="day.date"
+      >
+        {{ day.day }}
+      </div>
     </div>
   </div>
 </template>
