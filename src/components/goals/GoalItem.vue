@@ -20,7 +20,7 @@ const props = defineProps({
 })
 
 const goalStore = useGoalStore()
-const { toggleGoal, editGoal, removeGoal } = goalStore
+const { toggleGoal, editGoal, removeGoal, addMilestone, editMilestone, toggleMilestone, removeMilestone } = goalStore
 
 // State for editing
 const isEditing = ref(false)
@@ -54,6 +54,17 @@ const cancelEdit = () => {
   editText.value = props.goal.text
   isEditing.value = false
 }
+
+// Milestones state
+const showMilestones = ref(false)
+const newMilestoneText = ref('')
+
+const handleAddMilestone = () => {
+  if (newMilestoneText.value.trim()) {
+    addMilestone(props.goal.id, newMilestoneText.value)
+    newMilestoneText.value = ''
+  }
+}
 </script>
 
 <template>
@@ -77,18 +88,23 @@ const cancelEdit = () => {
         class="goal-input"
         :style="{ width: `${Math.max(editText.length + 1, 5)}ch`, maxWidth: '100%' }"
       />
-      <span
-        v-else
-        @dblclick="startEdit"
-        class="goal-text cursor-pointer"
-        :class="[
-          goal.done
-            ? 'line-through text-slate-400'
-            : 'text-slate-900 font-medium'
-        ]"  
-      >
-        {{ goal.text }}
-      </span>
+      <div v-else class="flex flex-col gap-1">
+        <span
+          @dblclick="startEdit"
+          class="goal-text cursor-pointer"
+          :class="[
+            goal.done
+              ? 'line-through text-slate-400'
+              : 'text-slate-900 font-medium'
+          ]"  
+        >
+          {{ goal.text }}
+        </span>
+        <!-- Milestone Summary -->
+        <span v-if="goal.milestones && goal.milestones.length > 0" class="text-xs text-slate-500 font-medium">
+          Milestones: {{ goal.milestones.filter(m => m.done).length }} / {{ goal.milestones.length }}
+        </span>
+      </div>
     </div>
 
     <!-- Actions -->
@@ -142,6 +158,64 @@ const cancelEdit = () => {
           </svg>
         </BaseButton>
       </template>
+      
+      <!-- Expand Milestones Button -->
+      <BaseButton 
+        v-if="!isEditing"
+        variant="primary" 
+        @click="showMilestones = !showMilestones" 
+        class="p-2 transition-opacity"
+        :class="[ showMilestones ? 'opacity-100 bg-slate-100' : 'opacity-0 group-hover:opacity-100' ]"
+        title="Toggle Milestones"
+      >
+        <svg class="goal-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="{ 'rotate-180': showMilestones, 'transition-transform': true }">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </BaseButton>
+    </div>
+  </div>
+
+  <!-- Milestones Section Box -->
+  <div v-if="showMilestones" class="pl-12 pr-4 py-2 bg-slate-50 border border-t-0 border-slate-200 rounded-b-lg -mt-2 mb-2">
+    <div class="flex flex-col gap-2 pt-2">
+      <!-- Milestone List -->
+      <div 
+        v-for="milestone in (goal.milestones || [])" 
+        :key="milestone.id"
+        class="flex items-center gap-2 group/milestone"
+      >
+        <BaseCheckBox 
+          :checked="milestone.done"
+          @toggle="toggleMilestone(goal.id, milestone.id)"
+          size="sm"
+        />
+        <span 
+          class="flex-1 text-sm pt-1"
+          :class="milestone.done ? 'line-through text-slate-400' : 'text-slate-700'"
+        >
+          {{ milestone.text }}
+        </span>
+        <!-- Milestone Delete -->
+        <button 
+          @click="removeMilestone(goal.id, milestone.id)"
+          class="text-red-400 hover:text-red-600 opacity-0 group-hover/milestone:opacity-100 transition-opacity p-1"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Add Milestone Input -->
+      <div class="flex items-center gap-2 mt-1">
+        <svg class="w-4 h-4 text-slate-400 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        <input 
+          v-model="newMilestoneText"
+          @keyup.enter="handleAddMilestone"
+          placeholder="Add a new milestone..."
+          class="flex-1 bg-transparent border-b border-slate-300 focus:border-sky-500 outline-none text-sm text-slate-700 py-1"
+        />
+      </div>
     </div>
   </div>
 </template>

@@ -35,7 +35,8 @@ export const useHabitStore = defineStore("habit", () => {
         id: Date.now(),
         text: text,
         done: false,
-        streak: 0
+        streak: 0,
+        completedDates: [] // Task 2.2: Calendar Tracking
       })
     }
   }
@@ -49,7 +50,21 @@ export const useHabitStore = defineStore("habit", () => {
 
   const toggleHabit = (id) => {
     const habit = habits.value.find(h => h.id === id)
-    if (habit) habit.done = !habit.done
+    if (habit) {
+      habit.done = !habit.done
+      
+      // Update completedDates for calendar
+      const today = new Date().toISOString().split('T')[0]
+      if (!habit.completedDates) habit.completedDates = []
+      
+      if (habit.done) {
+        if (!habit.completedDates.includes(today)) {
+          habit.completedDates.push(today)
+        }
+      } else {
+        habit.completedDates = habit.completedDates.filter(date => date !== today)
+      }
+    }
   }
 
   const removeHabit = (id) => {

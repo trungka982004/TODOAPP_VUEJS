@@ -33,7 +33,8 @@ export const useGoalStore = defineStore("goal", () => {
       goals.value.push({
         id: Date.now(),
         text: text,
-        done: false
+        done: false,
+        milestones: [] // Task 2.1: Milestones
       })
     }
   }
@@ -64,6 +65,46 @@ export const useGoalStore = defineStore("goal", () => {
     filter.value = newFilter
   }
 
+  // Milestone Actions (Task 2.1)
+  const addMilestone = (goalId, text) => {
+    const goal = goals.value.find(g => g.id === goalId)
+    if(goal && text.trim()) {
+      if(!goal.milestones) goal.milestones = []
+      goal.milestones.push({
+        id: Date.now(),
+        text: text.trim(),
+        done: false
+      })
+    }
+  }
+
+  const editMilestone = (goalId, milestoneId, text) => {
+    const goal = goals.value.find(g => g.id === goalId)
+    if(goal && goal.milestones) {
+      const milestone = goal.milestones.find(m => m.id === milestoneId)
+      if(milestone && text.trim()) {
+        milestone.text = text.trim()
+      }
+    }
+  }
+
+  const toggleMilestone = (goalId, milestoneId) => {
+    const goal = goals.value.find(g => g.id === goalId)
+    if(goal && goal.milestones) {
+      const milestone = goal.milestones.find(m => m.id === milestoneId)
+      if(milestone) {
+        milestone.done = !milestone.done
+      }
+    }
+  }
+
+  const removeMilestone = (goalId, milestoneId) => {
+    const goal = goals.value.find(g => g.id === goalId)
+    if(goal && goal.milestones) {
+      goal.milestones = goal.milestones.filter(m => m.id !== milestoneId)
+    }
+  }
+
   // Automatically sync goals to LocalStorage on change
   watch(goals, (newGoals) => {
     storageService.saveGoals(newGoals)
@@ -73,6 +114,7 @@ export const useGoalStore = defineStore("goal", () => {
     goals, filter,
     filteredGoals, totalCount, completedCount, progress,
     addGoal, editGoal, toggleGoal, removeGoal, clearAll, setFilter,
+    addMilestone, editMilestone, toggleMilestone, removeMilestone,
     loadGoals
   }
 })
