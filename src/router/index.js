@@ -5,6 +5,8 @@ import RegisterView from "../views/RegisterView.vue"
 import DashboardView from "../views/DashboardView.vue"
 import GoalsView from "../views/GoalsView.vue"
 import HabitsView from "../views/HabitsView.vue"
+import JournalView from "../views/JournalView.vue"
+import AnalyticsView from "../views/AnalyticsView.vue"
 import SettingView from "../views/SettingView.vue"
 const routes = [
   {
@@ -34,6 +36,16 @@ const routes = [
     path: "/habits",
     name: "habits",
     component: HabitsView,
+  },
+  {
+    path: "/journal",
+    name: "journal",
+    component: JournalView,
+  },
+  {
+    path: "/analytics",
+    name: "analytics",
+    component: AnalyticsView,
   },
   {
     path: "/settings",

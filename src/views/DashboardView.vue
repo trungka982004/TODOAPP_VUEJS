@@ -2,16 +2,19 @@
 import { onMounted } from 'vue'
 import { useGoalStore } from "../stores/goalStore"
 import { useHabitStore } from "../stores/habitStore"
+import { useJournalStore } from "../stores/journalStore"
 import BaseCard from "../components/base/BaseCard.vue"
 import GoalList from "../components/goals/GoalList.vue"
 import HabitList from "../components/habits/HabitList.vue"
 
 const goalStore = useGoalStore()
 const habitStore = useHabitStore()
+const journalStore = useJournalStore()
 
 onMounted(() => {
   if (goalStore.loadGoals) goalStore.loadGoals()
   if (habitStore.loadHabits) habitStore.loadHabits()
+  if (journalStore.loadJournals) journalStore.loadJournals()
 })
 </script>
 

@@ -6,7 +6,8 @@
 const STORAGE_KEYS = {
   GOALS: 'todo_app_goals',
   HABITS: 'todo_app_habits',
-  SETTINGS: 'todo_app_settings'
+  SETTINGS: 'todo_app_settings',
+  JOURNALS: 'todo_app_journals'
 }
 
 export const storageService = {
@@ -36,5 +37,13 @@ export const storageService = {
 
   saveHabits(habits) {
     this.save(STORAGE_KEYS.HABITS, habits)
+  },
+
+  getJournals() {
+    return this.fetch(STORAGE_KEYS.JOURNALS) || []
+  },
+
+  saveJournals(journals) {
+    this.save(STORAGE_KEYS.JOURNALS, journals)
   }
 }
