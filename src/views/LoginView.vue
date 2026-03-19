@@ -34,7 +34,7 @@ const goToRegister = () => router.push('/register')
       <div class="text-center">
         <div class="flex justify-center mb-4">
           <div class="h-12 w-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
-            <span class="text-white text-2xl font-bold">T</span>
+            <span class="text-white text-2xl font-bold">P</span>
           </div>
         </div>
         <h1 class="text-3xl font-bold text-slate-800">Welcome Back</h1>

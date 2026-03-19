@@ -1,38 +1,61 @@
-# my-vue-app
+# PlanPulse 🚀
 
-This template should help get you started developing with Vue 3 in Vite.
+**PlanPulse** is a comprehensive personal productivity and growth engine. More than just a task manager, it's a central hub for your goals, daily routines, and self-reflection.
 
-## Recommended IDE Setup
+## 🌟 Key Features
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+*   **📈 Dashboard**: A high-level overview of your daily progress, upcoming goals, and recent activities.
+*   **🎯 Goal Management**: Set, categorize, and track long-term objectives with detailed progress monitoring.
+*   **⚡ Habit Tracking**: Build positive routines with streak tracking to keep you motivated.
+*   **📝 Mood Journal**: Reflect on your day, track your feelings, and create custom moods with an integrated emoji picker.
+*   **📊 Insights & Analytics**: Visualize your performance over time with data-driven charts and analytics.
+*   **🔒 Secure Authentication**: Built with Google Login integration via Supabase.
 
-## Recommended Browser Setup
+## 🛠️ Technology Stack
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+*   **Frontend**: [Vue.js 3](https://vuejs.org/) (Composition API)
+*   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+*   **Backend & Auth**: [Supabase](https://supabase.com/)
+*   **State Management**: [Pinia](https://pinia.vuejs.org/)
+*   **Charts**: [Chart.js](https://www.chartjs.org/)
+*   **AI Integration**: [Google Gemini AI](https://ai.google.dev/) (Ready for future AI enhancements)
 
-## Customize configuration
+## 🚀 Getting Started
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Prerequisites
 
-## Project Setup
+*   Node.js (v20+ or latest LTS)
+*   npm
 
-```sh
-npm install
-```
+### Installation
 
-### Compile and Hot-Reload for Development
+1.  Clone the repository:
+    ```sh
+    git clone https://github.com/trungka982004/TODOAPP_VUEJS.git
+    cd TODOAPP_VUEJS
+    ```
+
+2.  Install dependencies:
+    ```sh
+    npm install
+    ```
+
+3.  Set up environment variables:
+    *   Create a `.env` file based on `.env.example`
+    *   Add your Supabase and Google Gemini API keys.
+
+### Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Build
 
 ```sh
 npm run build
 ```
+
+## 📄 License
+
+This project is licensed under the MIT License.

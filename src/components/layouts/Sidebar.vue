@@ -16,9 +16,9 @@ const menuItems = [
     <!-- Logo -->
     <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center gap-3">
       <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200 dark:shadow-none">
-        <span class="text-white font-bold text-xl">T</span>
+        <span class="text-white font-bold text-xl">P</span>
       </div>
-      <span class="font-bold text-xl text-slate-800 dark:text-slate-100 tracking-tight">Todo App</span>
+      <span class="font-bold text-xl text-slate-800 dark:text-slate-100 tracking-tight">PlanPulse</span>
     </div>
 
     <!-- Navigation -->

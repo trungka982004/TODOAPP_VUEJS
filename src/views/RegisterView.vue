@@ -41,6 +41,11 @@ const goToLogin = () => router.push('/login')
     <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
       
       <div class="text-center">
+        <div class="flex justify-center mb-4">
+          <div class="h-12 w-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
+            <span class="text-white text-2xl font-bold">P</span>
+          </div>
+        </div>
         <h1 class="text-3xl font-bold text-slate-800">Create an Account</h1>
         <p class="text-slate-500 mt-2">Start your productivity journey today</p>
       </div>

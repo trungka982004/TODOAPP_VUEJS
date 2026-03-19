@@ -17,7 +17,7 @@ const pageTitle = computed(() => {
     '/analytics': 'Advanced Analytics',
     '/journal': 'Daily Reflections'
   }
-  return titles[route.path] || 'Todo App'
+  return titles[route.path] || 'PlanPulse'
 })
 
 const handleClearAll = () => {
