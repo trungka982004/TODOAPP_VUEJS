@@ -22,7 +22,7 @@ const variantClasses = {
 <template>
     <button
     :type="type"
-    class="px-5 py-3 rounded-xl font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-slate-900 flex items-center justify-center gap-2 tracking-tight disabled:opacity-50 disabled:pointer-events-none"
+    class="px-5 py-3 rounded-xl font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-neutral-900 flex items-center justify-center gap-2 tracking-tight disabled:opacity-50 disabled:pointer-events-none"
     :class="variantClasses[variant]"
     >
         <slot />

@@ -164,27 +164,27 @@ const toggleNotifications = async () => {
               <!-- Avatar Column -->
               <div class="shrink-0 flex flex-col items-center gap-4">
                 <div class="relative group cursor-pointer" @click="showAvatarModal = true">
-                  <img :src="profileForm.avatar_url || store.userProfile.avatar" class="w-28 h-28 rounded-[2.5rem] border-4 border-white dark:border-slate-800 shadow-2xl object-cover" />
+                  <img :src="profileForm.avatar_url || store.userProfile.avatar" class="w-28 h-28 rounded-[2.5rem] border-4 border-white dark:border-neutral-800 shadow-2xl object-cover" />
                   <div class="absolute inset-0 bg-black/40 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
                     <span class="text-white text-xs font-bold tracking-wide">Change</span>
                   </div>
                 </div>
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Click to change avatar</span>
+                <span class="text-[10px] font-bold text-neutral-400 uppercase tracking-tighter">Click to change avatar</span>
               </div>
 
               <!-- Info Column -->
               <div class="flex-1 space-y-5">
                 <!-- 1. Name -->
                 <div class="space-y-1.5">
-                  <label class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider ml-1">Full Name</label>
-                  <input v-model="profileForm.full_name" placeholder="John Doe" class="w-full px-4 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/20 transition-all" />
+                  <label class="text-[11px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider ml-1">Full Name</label>
+                  <input v-model="profileForm.full_name" placeholder="John Doe" class="w-full px-4 py-3.5 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/20 transition-all" />
                 </div>
 
                 <!-- 2. Email -->
                 <div class="space-y-1.5">
-                  <label class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider ml-1">Email (Locked)</label>
+                  <label class="text-[11px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider ml-1">Email (Locked)</label>
                   <div class="relative">
-                    <input :value="profileForm.email" disabled class="w-full px-4 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-400 outline-none cursor-not-allowed" />
+                    <input :value="profileForm.email" disabled class="w-full px-4 py-3.5 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-neutral-400 outline-none cursor-not-allowed" />
                     <span class="absolute right-4 top-1/2 -translate-y-1/2">🔒</span>
                   </div>
                 </div>
@@ -192,14 +192,14 @@ const toggleNotifications = async () => {
                 <!-- 3. Password -->
                 <div class="space-y-1.5">
                   <div class="flex items-center justify-between ml-1">
-                    <label class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Password</label>
+                    <label class="text-[11px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Password</label>
                     <button @click="showPasswordFields = !showPasswordFields" class="text-[10px] font-bold text-indigo-600 hover:text-indigo-700 uppercase tracking-tight">
                       {{ showPasswordFields ? 'Cancel' : 'Change Password' }}
                     </button>
                   </div>
                   
                   <div v-if="!showPasswordFields" class="relative group">
-                    <input type="password" value="••••••••" disabled class="w-full px-4 py-3.5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900 text-slate-300 outline-none" />
+                    <input type="password" value="••••••••" disabled class="w-full px-4 py-3.5 rounded-2xl border border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900 text-neutral-300 outline-none" />
                   </div>
                   
                   <div v-else class="space-y-4 bg-indigo-50/50 dark:bg-indigo-900/10 p-4 rounded-2xl border border-indigo-100 dark:border-indigo-900/20 animate-in fade-in slide-in-from-top-2">
@@ -215,12 +215,12 @@ const toggleNotifications = async () => {
                             autocomplete="off"
                             :disabled="isPasswordVerified"
                             :class="[
-                              passwordError ? 'border-red-300 ring-4 ring-red-100 dark:ring-red-900/20' : 'border-slate-200 dark:border-slate-700',
-                              isPasswordVerified ? 'bg-indigo-100/50 text-indigo-400 border-indigo-200' : 'bg-white dark:bg-slate-900'
+                              passwordError ? 'border-red-300 ring-4 ring-red-100 dark:ring-red-900/20' : 'border-neutral-200 dark:border-neutral-700',
+                              isPasswordVerified ? 'bg-indigo-100/50 text-indigo-400 border-indigo-200' : 'bg-white dark:bg-neutral-900'
                             ]"
-                            class="w-full px-4 py-3 rounded-xl border text-slate-900 dark:text-slate-100 outline-none transition-all shadow-sm"
+                            class="w-full px-4 py-3 rounded-xl border text-neutral-900 dark:text-neutral-100 outline-none transition-all shadow-sm"
                           />
-                          <button v-if="!isPasswordVerified" @click="togglePasswordVisibility" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                          <button v-if="!isPasswordVerified" @click="togglePasswordVisibility" class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600">
                             {{ showPassword ? '🙈' : '👁️' }}
                           </button>
                           <span v-if="isPasswordVerified" class="absolute right-3 top-1/2 -translate-y-1/2 text-indigo-500">✓</span>
@@ -232,7 +232,7 @@ const toggleNotifications = async () => {
                         v-if="!isPasswordVerified"
                         @click="handleVerifyPassword" 
                         :disabled="!currentPassword || verifyingPassword"
-                        class="w-full py-2.5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-50"
+                        class="w-full py-2.5 bg-neutral-800 hover:bg-neutral-900 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-50"
                       >
                         {{ verifyingPassword ? 'Verifying...' : 'Verify Password' }}
                       </button>
@@ -249,9 +249,9 @@ const toggleNotifications = async () => {
                             v-model="newPassword" 
                             placeholder="Type new password" 
                             autocomplete="new-password"
-                            class="w-full px-4 py-3 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/20 transition-all shadow-sm"
+                            class="w-full px-4 py-3 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/20 transition-all shadow-sm"
                           />
-                          <button @click="togglePasswordVisibility" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                          <button @click="togglePasswordVisibility" class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600">
                             {{ showPassword ? '🙈' : '👁️' }}
                           </button>
                         </div>
@@ -270,27 +270,27 @@ const toggleNotifications = async () => {
 
                 <!-- 4. Short Bio -->
                 <div class="space-y-1.5">
-                  <label class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider ml-1">Short Bio</label>
-                  <textarea v-model="profileForm.bio" rows="3" placeholder="Tell us about your goals..." class="w-full px-4 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/20 transition-all resize-none"></textarea>
+                  <label class="text-[11px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider ml-1">Short Bio</label>
+                  <textarea v-model="profileForm.bio" rows="3" placeholder="Tell us about your goals..." class="w-full px-4 py-3.5 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/20 transition-all resize-none"></textarea>
                 </div>
               </div>
             </div>
           </section>
 
-          <hr class="border-slate-100 dark:border-slate-800" />
+          <hr class="border-neutral-100 dark:border-neutral-800" />
 
           <!-- Remaining sections unchanged (AI Goal Coach, etc.) -->
           <section class="space-y-4">
             <h3 class="text-xs font-bold text-indigo-600 dark:text-indigo-300 uppercase tracking-widest mb-4">AI Goal Coach</h3>
-            <div class="flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200/50 dark:border-slate-700">
+            <div class="flex items-center justify-between p-5 bg-neutral-50 dark:bg-neutral-800/40 rounded-2xl border border-neutral-200/50 dark:border-neutral-700">
                <div class="flex items-center gap-4">
                  <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-2xl shadow-sm">🤖</div>
                  <div>
-                   <span class="font-bold block dark:text-slate-100 text-sm">Enable AI Goal Coach</span>
-                   <span class="text-[10px] text-slate-500 dark:text-slate-400">Get personalized feedback and motivation</span>
+                   <span class="font-bold block dark:text-neutral-100 text-sm">Enable AI Goal Coach</span>
+                   <span class="text-[10px] text-neutral-500 dark:text-neutral-400">Get personalized feedback and motivation</span>
                  </div>
                </div>
-               <button @click="store.toggleAIActive()" :class="store.aiActive ? 'bg-purple-600 shadow-purple-200' : 'bg-slate-300 dark:bg-slate-600'" class="w-14 h-7 rounded-full relative transition-all shadow-md">
+               <button @click="store.toggleAIActive()" :class="store.aiActive ? 'bg-purple-600 shadow-purple-200' : 'bg-neutral-300 dark:bg-neutral-600'" class="w-14 h-7 rounded-full relative transition-all shadow-md">
                  <div :class="store.aiActive ? 'translate-x-8' : 'translate-x-1'" class="w-5 h-5 bg-white rounded-full absolute top-1 transition-transform"></div>
                </button>
             </div>
@@ -298,15 +298,15 @@ const toggleNotifications = async () => {
 
           <section class="space-y-4">
             <h3 class="text-xs font-bold text-indigo-600 dark:text-indigo-300 uppercase tracking-widest mb-4">Notifications</h3>
-            <div class="flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200/50 dark:border-slate-700">
+            <div class="flex items-center justify-between p-5 bg-neutral-50 dark:bg-neutral-800/40 rounded-2xl border border-neutral-200/50 dark:border-neutral-700">
                <div class="flex items-center gap-4">
                  <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-2xl shadow-sm">🔔</div>
                  <div>
-                   <span class="font-bold block dark:text-slate-100 text-sm">Push Notifications</span>
-                   <span class="text-[10px] text-slate-500 dark:text-slate-400">Receive smart alerts about your goals and habits</span>
+                   <span class="font-bold block dark:text-neutral-100 text-sm">Push Notifications</span>
+                   <span class="text-[10px] text-neutral-500 dark:text-neutral-400">Receive smart alerts about your goals and habits</span>
                  </div>
                </div>
-               <button @click="toggleNotifications" :class="store.notificationsEnabled ? 'bg-indigo-600 shadow-indigo-200' : 'bg-slate-300 dark:bg-slate-600'" class="w-14 h-7 rounded-full relative transition-all shadow-md">
+               <button @click="toggleNotifications" :class="store.notificationsEnabled ? 'bg-indigo-600 shadow-indigo-200' : 'bg-neutral-300 dark:bg-neutral-600'" class="w-14 h-7 rounded-full relative transition-all shadow-md">
                  <div :class="store.notificationsEnabled ? 'translate-x-8' : 'translate-x-1'" class="w-5 h-5 bg-white rounded-full absolute top-1 transition-transform"></div>
                </button>
             </div>
@@ -322,19 +322,19 @@ const toggleNotifications = async () => {
     </div>
 
     <!-- Avatar Selection Modal -->
-    <div v-if="showAvatarModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-200">
-      <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-3xl shadow-2xl p-8 space-y-6 animate-in zoom-in-95 duration-200">
+    <div v-if="showAvatarModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-900/40 backdrop-blur-sm animate-in fade-in duration-200">
+      <div class="bg-white dark:bg-neutral-900 w-full max-w-md rounded-3xl shadow-2xl p-8 space-y-6 animate-in zoom-in-95 duration-200">
         <div class="flex justify-between items-center mb-2">
-          <h2 class="text-xl font-bold dark:text-slate-100">Update Avatar</h2>
-          <button @click="showAvatarModal = false" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">✕</button>
+          <h2 class="text-xl font-bold dark:text-neutral-100">Update Avatar</h2>
+          <button @click="showAvatarModal = false" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full transition-colors">✕</button>
         </div>
         
         <div class="space-y-6">
           <!-- Option 1: File Upload -->
-          <div class="space-y-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
-            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Local Upload</h4>
+          <div class="space-y-3 p-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-2xl border border-neutral-100 dark:border-neutral-800">
+            <h4 class="text-xs font-bold text-neutral-400 uppercase tracking-wider">Local Upload</h4>
             <div class="flex items-center gap-3">
-              <input type="file" @change="onFileChange" accept="image/*" class="text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-600 hover:file:bg-indigo-100 dark:file:bg-indigo-900/30 dark:file:text-indigo-300" />
+              <input type="file" @change="onFileChange" accept="image/*" class="text-xs text-neutral-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-600 hover:file:bg-indigo-100 dark:file:bg-indigo-900/30 dark:file:text-indigo-300" />
             </div>
             <button @click="uploadAndApplyAvatar" :disabled="!selectedFile || uploadingAvatar" class="w-full py-2.5 bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-30">
               {{ uploadingAvatar ? 'Uploading...' : 'Upload & Use' }}
@@ -342,10 +342,10 @@ const toggleNotifications = async () => {
           </div>
 
           <!-- Option 2: Image URL -->
-          <div class="space-y-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
-            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Image URL</h4>
-            <input v-model="remoteAvatarUrl" placeholder="https://unsplash.com/..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-medium dark:text-slate-100 outline-none focus:ring-2 focus:ring-indigo-500/20" />
-            <button @click="applyRemoteAvatar" :disabled="!remoteAvatarUrl" class="w-full py-2.5 bg-slate-800 dark:bg-slate-700 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-30">
+          <div class="space-y-3 p-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-2xl border border-neutral-100 dark:border-neutral-800">
+            <h4 class="text-xs font-bold text-neutral-400 uppercase tracking-wider">Image URL</h4>
+            <input v-model="remoteAvatarUrl" placeholder="https://unsplash.com/..." class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-xs font-medium dark:text-neutral-100 outline-none focus:ring-2 focus:ring-indigo-500/20" />
+            <button @click="applyRemoteAvatar" :disabled="!remoteAvatarUrl" class="w-full py-2.5 bg-neutral-800 dark:bg-neutral-700 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-30">
               Apply URL
             </button>
           </div>

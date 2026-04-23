@@ -80,7 +80,7 @@ const categoryClass = computed(() => {
   <div>
     <div class="goal-item group">
     <!-- Drag Handle -->
-    <div v-if="!isEditing" class="drag-handle cursor-move opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 pr-2 -ml-2 flex items-center" title="Drag to reorder">
+    <div v-if="!isEditing" class="drag-handle cursor-move opacity-0 group-hover:opacity-100 transition-opacity text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 pr-2 -ml-2 flex items-center" title="Drag to reorder">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg>
     </div>
 
@@ -110,8 +110,8 @@ const categoryClass = computed(() => {
           class="goal-text"
           :class="[
             goal.status === 'completed'
-              ? 'line-through text-slate-400'
-              : 'text-slate-900 font-medium'
+              ? 'line-through text-neutral-400'
+              : 'text-neutral-900 font-medium'
           ]"  
         >
           <span class="flex items-center gap-2">
@@ -122,7 +122,7 @@ const categoryClass = computed(() => {
           </span>
         </span>
         <!-- Milestone Summary -->
-        <span v-if="goal.milestones && goal.milestones.length > 0" class="text-xs text-slate-500 font-medium">
+        <span v-if="goal.milestones && goal.milestones.length > 0" class="text-xs text-neutral-500 font-medium">
           Milestones: {{ goal.milestones.filter(m => m.status === 'completed').length }} / {{ goal.milestones.length }}
         </span>
       </div>
@@ -186,7 +186,7 @@ const categoryClass = computed(() => {
         variant="primary" 
         @click="showMilestones = !showMilestones" 
         class="p-2 transition-opacity"
-        :class="[ showMilestones ? 'opacity-100 bg-slate-100 dark:bg-slate-800' : 'opacity-0 group-hover:opacity-100' ]"
+        :class="[ showMilestones ? 'opacity-100 bg-neutral-100 dark:bg-neutral-800' : 'opacity-0 group-hover:opacity-100' ]"
         title="Toggle Milestones"
       >
         <svg class="goal-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="{ 'rotate-180': showMilestones, 'transition-transform': true }">
@@ -197,7 +197,7 @@ const categoryClass = computed(() => {
   </div>
 
   <!-- Milestones Section Box -->
-  <div v-if="showMilestones" class="pl-12 pr-4 py-2 bg-slate-50 dark:bg-slate-800/50 border border-t-0 border-slate-200 dark:border-slate-700 rounded-b-lg -mt-2 mb-2">
+  <div v-if="showMilestones" class="pl-12 pr-4 py-2 bg-neutral-50 dark:bg-neutral-800/50 border border-t-0 border-neutral-200 dark:border-neutral-700 rounded-b-lg -mt-2 mb-2">
     <div class="flex flex-col gap-2 pt-2">
       <!-- Milestone List -->
       <div 
@@ -212,7 +212,7 @@ const categoryClass = computed(() => {
         />
         <span 
           class="flex-1 text-sm pt-1"
-          :class="milestone.status === 'completed' ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-700 dark:text-slate-200'"
+          :class="milestone.status === 'completed' ? 'line-through text-neutral-400 dark:text-neutral-500' : 'text-neutral-700 dark:text-neutral-200'"
         >
           {{ milestone.title }}
         </span>
@@ -229,12 +229,12 @@ const categoryClass = computed(() => {
 
       <!-- Add Milestone Input -->
       <div class="flex items-center gap-2 mt-1">
-        <svg class="w-4 h-4 text-slate-400 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        <svg class="w-4 h-4 text-neutral-400 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
         <input 
           v-model="newMilestoneText"
           @keyup.enter="handleAddMilestone"
           placeholder="Add a new milestone..."
-          class="flex-1 bg-transparent border-b border-slate-300 dark:border-slate-600 focus:border-sky-500 dark:focus:border-sky-400 outline-none text-sm text-slate-700 dark:text-slate-200 py-1 placeholder-slate-400 dark:placeholder-slate-500"
+          class="flex-1 bg-transparent border-b border-neutral-300 dark:border-neutral-600 focus:border-primary-500 dark:focus:border-primary-400 outline-none text-sm text-neutral-700 dark:text-neutral-200 py-1 placeholder-neutral-400 dark:placeholder-neutral-500"
         />
       </div>
     </div>
@@ -246,11 +246,11 @@ const categoryClass = computed(() => {
 @reference "../../assets/main.css";
 
 .goal-item {
-  @apply flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-sky-400 dark:hover:border-sky-500 hover:shadow-md transition-all duration-200;
+  @apply flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:border-primary-400 dark:hover:border-primary-500 hover:shadow-md transition-all duration-200;
 }
 
 .goal-input {
-  @apply bg-slate-50 dark:bg-slate-900 dark:text-white border-b-2 border-sky-500 outline-none px-2 py-1 text-sm font-medium transition-all duration-200;
+  @apply bg-neutral-50 dark:bg-neutral-900 dark:text-white border-b-2 border-primary-500 outline-none px-2 py-1 text-sm font-medium transition-all duration-200;
 }
 
 .goal-text {
