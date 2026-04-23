@@ -20,7 +20,7 @@ const defaultMoods = [
   { value: 'excited', icon: '🤩', label: 'Excited', color: 'bg-yellow-100 text-yellow-700 border-yellow-300 dark:bg-yellow-500/20 dark:text-yellow-300 dark:border-yellow-500/50' },
   { value: 'proud', icon: '😎', label: 'Proud', color: 'bg-indigo-100 text-indigo-700 border-indigo-300 dark:bg-indigo-500/20 dark:text-indigo-300 dark:border-indigo-500/50' },
   { value: 'calm', icon: '😌', label: 'Calm', color: 'bg-teal-100 text-teal-700 border-teal-300 dark:bg-teal-500/20 dark:text-teal-300 dark:border-teal-500/50' },
-  { value: 'neutral', icon: '😐', label: 'Neutral', color: 'bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-600/40 dark:text-slate-200 dark:border-slate-500/50' },
+  { value: 'neutral', icon: '😐', label: 'Neutral', color: 'bg-neutral-100 text-neutral-700 border-neutral-300 dark:bg-neutral-600/40 dark:text-neutral-200 dark:border-neutral-500/50' },
   { value: 'tired', icon: '😴', label: 'Tired', color: 'bg-stone-100 text-stone-700 border-stone-300 dark:bg-stone-500/20 dark:text-stone-300 dark:border-stone-500/50' },
   { value: 'anxious', icon: '😬', label: 'Anxious', color: 'bg-orange-100 text-orange-700 border-orange-300 dark:bg-orange-500/20 dark:text-orange-300 dark:border-orange-500/50' },
   { value: 'sad', icon: '😔', label: 'Sad', color: 'bg-rose-100 text-rose-700 border-rose-300 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/50' },
@@ -85,20 +85,30 @@ const formatDate = (isoString) => {
 
 const getMoodStyle = (moodValue) => {
   const m = moods.value.find(m => m.value === moodValue)
-  return m ? m.color : 'bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-600/40 dark:text-slate-200 dark:border-slate-500/50'
+  return m ? m.color : 'bg-neutral-100 text-neutral-700 border-neutral-300 dark:bg-neutral-600/40 dark:text-neutral-200 dark:border-neutral-500/50'
 }
 
 const getMoodIcon = (moodValue) => {
   const m = moods.value.find(m => m.value === moodValue)
   return m ? m.icon : '😐'
 }
+
+const selectedMoodFilter = ref('all')
+const showFilterDropdown = ref(false)
+
+const filteredEntries = computed(() => {
+  if (selectedMoodFilter.value === 'all') {
+    return journalStore.recentEntries
+  }
+  return journalStore.recentEntries.filter(entry => entry.mood === selectedMoodFilter.value)
+})
 </script>
 
 <template>
   <div class="space-y-6">
     <!-- Loading State -->
     <div v-if="journalStore.loading" class="flex justify-center py-12">
-      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-500"></div>
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
     </div>
 
     <!-- Content -->
@@ -106,15 +116,15 @@ const getMoodIcon = (moodValue) => {
       <!-- Header -->
       <div class="flex items-end justify-between">
         <div>
-          <h1 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">Journal</h1>
-          <p class="text-slate-500 dark:text-slate-400 mt-1">Reflect on your day, your goals, and your habits.</p>
+          <h1 class="text-3xl font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight">Journal</h1>
+          <p class="text-neutral-500 dark:text-neutral-400 mt-1">Reflect on your day, your goals, and your habits.</p>
         </div>
       </div>
 
       <!-- New Entry Form -->
-      <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 flex flex-col space-y-4 transition-colors duration-200">
+      <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-700 p-6 flex flex-col space-y-4 transition-colors duration-200">
         <div class="flex flex-col mb-4">
-          <span class="text-sm font-semibold tracking-wide text-slate-600 dark:text-slate-300 uppercase mb-2">How are you feeling?</span>
+          <span class="text-sm font-semibold tracking-wide text-neutral-600 dark:text-neutral-300 uppercase mb-2">How are you feeling?</span>
           <div class="flex flex-wrap gap-2 items-center">
             <button 
               v-for="mood in moods" 
@@ -122,7 +132,7 @@ const getMoodIcon = (moodValue) => {
               @click="currentMood = mood.value"
               class="px-3 py-1.5 rounded-full border text-sm font-medium transition-colors"
               :class="[
-                currentMood === mood.value ? mood.color : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-sm'
+                currentMood === mood.value ? mood.color : 'bg-white dark:bg-neutral-800 text-neutral-500 dark:text-neutral-300 border-neutral-200 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700 shadow-sm'
               ]"
             >
               {{ mood.icon }} {{ mood.label }}
@@ -131,30 +141,30 @@ const getMoodIcon = (moodValue) => {
             <div v-if="!isAddingCustomMood" class="relative">
               <button 
                 @click="isAddingCustomMood = true; showEmojiPicker = false"
-                class="px-3 py-1.5 rounded-full border border-dashed border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-700 dark:hover:text-slate-200 transition-colors"
+                class="px-3 py-1.5 rounded-full border border-dashed border-neutral-300 dark:border-neutral-600 text-neutral-500 dark:text-neutral-400 text-sm font-medium hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
               >
                 + Custom
               </button>
             </div>
-            <div v-else class="flex items-center gap-1 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-full px-2 py-1 relative">
+            <div v-else class="flex items-center gap-1 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-full px-2 py-1 relative">
               <button 
                 @click="showEmojiPicker = !showEmojiPicker"
                 title="Pick an Emoji"
-                class="w-10 bg-transparent outline-none text-center text-lg px-1 py-0.5 hover:bg-slate-200 dark:hover:bg-slate-800 rounded transition-colors" 
+                class="w-10 bg-transparent outline-none text-center text-lg px-1 py-0.5 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded transition-colors" 
               >
                 {{ newMoodIcon || '😀' }}
               </button>
               
-              <div v-if="showEmojiPicker" class="absolute z-50 top-full left-0 mt-2 shadow-2xl rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
-                 <EmojiPicker :native="true" @select="onSelectEmoji" class="dark:bg-slate-800" />
+              <div v-if="showEmojiPicker" class="absolute z-50 top-full left-0 mt-2 shadow-2xl rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700">
+                 <EmojiPicker :native="true" @select="onSelectEmoji" class="dark:bg-neutral-800" />
               </div>
 
-              <div class="w-px h-4 bg-slate-300 dark:bg-slate-600"></div>
+              <div class="w-px h-4 bg-neutral-300 dark:bg-neutral-600"></div>
               <input 
                 v-model="newMoodLabel" 
                 @keyup.enter="saveCustomMood"
                 placeholder="Feeling" 
-                class="w-24 bg-transparent outline-none text-sm px-1 py-0.5 text-slate-700 dark:text-slate-200" 
+                class="w-24 bg-transparent outline-none text-sm px-1 py-0.5 text-neutral-700 dark:text-neutral-200" 
               />
               <button 
                 @click="saveCustomMood"
@@ -165,7 +175,7 @@ const getMoodIcon = (moodValue) => {
               </button>
               <button 
                 @click="isAddingCustomMood = false"
-                class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 p-0.5 ml-0.5"
+                class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 p-0.5 ml-0.5"
               >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
               </button>
@@ -175,7 +185,7 @@ const getMoodIcon = (moodValue) => {
         <textarea 
           v-model="currentEntry" 
           placeholder="Write what's on your mind..."
-          class="w-full h-32 p-4 border border-slate-300 dark:border-slate-700 rounded-lg outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all resize-y text-slate-700 dark:text-slate-100 bg-slate-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-slate-800 placeholder-slate-400 dark:placeholder-slate-500"
+          class="w-full h-32 p-4 border border-neutral-300 dark:border-neutral-700 rounded-lg outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all resize-y text-neutral-700 dark:text-neutral-100 bg-neutral-50 dark:bg-neutral-900 focus:bg-white dark:focus:bg-neutral-800 placeholder-neutral-400 dark:placeholder-neutral-500"
         ></textarea>
         <div class="flex justify-end">
           <BaseButton 
@@ -192,30 +202,73 @@ const getMoodIcon = (moodValue) => {
 
       <!-- Journal History -->
       <div>
-        <h2 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-4 tracking-tight">Recent Entries</h2>
-        <div v-if="journalStore.recentEntries.length === 0" class="text-center py-12 bg-white dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 border-dashed transition-colors duration-200">
-          <svg class="mx-auto h-12 w-12 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight">Recent Entries</h2>
+          <div class="flex items-center gap-2">
+            <div class="relative">
+              <button 
+                @click="showFilterDropdown = !showFilterDropdown" 
+                class="p-2 rounded-lg border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-500 dark:text-neutral-400 transition-colors bg-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500" 
+                title="Filter Entries"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+                <span v-if="selectedMoodFilter !== 'all'" class="absolute top-0 right-0 -mt-1 -mr-1 flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-primary-500"></span>
+                </span>
+              </button>
+              
+              <!-- Custom Dropdown -->
+              <div v-if="showFilterDropdown" class="absolute right-0 mt-2 w-48 bg-white dark:bg-neutral-800 rounded-xl shadow-lg border border-neutral-200 dark:border-neutral-700 py-1 z-20">
+                <button 
+                  @click="selectedMoodFilter = 'all'; showFilterDropdown = false"
+                  class="w-full text-left px-4 py-2 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+                  :class="selectedMoodFilter === 'all' ? 'text-primary-600 dark:text-primary-400 font-medium bg-primary-50/50 dark:bg-primary-900/20' : 'text-neutral-700 dark:text-neutral-300'"
+                >
+                  All Moods
+                </button>
+                <div class="h-px bg-neutral-200 dark:bg-neutral-700 my-1"></div>
+                <div class="max-h-60 overflow-y-auto">
+                  <button
+                    v-for="mood in moods"
+                    :key="mood.value"
+                    @click="selectedMoodFilter = mood.value; showFilterDropdown = false"
+                    class="w-full text-left px-4 py-2 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors flex items-center gap-2"
+                    :class="selectedMoodFilter === mood.value ? 'text-primary-600 dark:text-primary-400 font-medium bg-primary-50/50 dark:bg-primary-900/20' : 'text-neutral-700 dark:text-neutral-300'"
+                  >
+                    <span>{{ mood.icon }}</span>
+                    <span>{{ mood.label }}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-if="filteredEntries.length === 0" class="text-center py-12 bg-white dark:bg-neutral-800/50 rounded-xl border border-neutral-200 dark:border-neutral-700 border-dashed transition-colors duration-200">
+          <svg class="mx-auto h-12 w-12 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
           </svg>
-          <h3 class="mt-2 text-sm font-semibold text-slate-900 dark:text-slate-100">No entries</h3>
-          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Get started by creating your first journal entry.</p>
+          <h3 class="mt-2 text-sm font-semibold text-neutral-900 dark:text-neutral-100">No entries</h3>
+          <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">Get started by creating your first journal entry.</p>
         </div>
         
         <div v-else class="space-y-4">
           <div 
-            v-for="entry in journalStore.recentEntries" 
+            v-for="entry in filteredEntries" 
             :key="entry.id"
-            class="group bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-sky-300 dark:hover:border-sky-500 transition-all duration-200 relative"
+            class="group bg-white dark:bg-neutral-800 p-5 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-md hover:border-primary-300 dark:hover:border-primary-500 transition-all duration-200 relative"
           >
             <div class="flex items-center justify-between mb-3 text-sm">
-              <span class="font-medium text-slate-500 dark:text-slate-400">{{ formatDate(entry.created_at) }}</span>
+              <span class="font-medium text-neutral-500 dark:text-neutral-400">{{ formatDate(entry.created_at) }}</span>
               <div class="flex items-center gap-3">
                 <span class="flex items-center whitespace-nowrap px-2.5 py-0.5 rounded-full border text-xs font-semibold" :class="getMoodStyle(entry.mood)">
                   {{ getMoodIcon(entry.mood) }} <span class="ml-1 capitalize">{{ entry.mood }}</span>
                 </span>
                 <button 
                   @click="journalStore.removeEntry(entry.id)"
-                  class="text-slate-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
+                  class="text-neutral-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
                   title="Delete Entry"
                 >
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -224,7 +277,7 @@ const getMoodIcon = (moodValue) => {
                 </button>
               </div>
             </div>
-            <p class="text-slate-700 dark:text-slate-300 whitespace-pre-wrap leading-relaxed">{{ entry.content }}</p>
+            <p class="text-neutral-700 dark:text-neutral-300 whitespace-pre-wrap leading-relaxed">{{ entry.content }}</p>
           </div>
         </div>
       </div>

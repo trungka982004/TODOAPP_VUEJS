@@ -12,13 +12,13 @@ const menuItems = [
 </script>
 
 <template>
-  <aside class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col h-screen sticky top-0 transition-colors duration-300">
+  <aside class="w-64 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 flex flex-col h-screen sticky top-0 transition-colors duration-300">
     <!-- Logo -->
-    <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center gap-3">
+    <div class="p-6 border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-3">
       <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200 dark:shadow-none">
         <span class="text-white font-bold text-xl">P</span>
       </div>
-      <span class="font-bold text-xl text-slate-800 dark:text-slate-100 tracking-tight">PlanPulse</span>
+      <span class="font-bold text-xl text-neutral-800 dark:text-neutral-100 tracking-tight">PlanPulse</span>
     </div>
 
     <!-- Navigation -->
@@ -31,7 +31,7 @@ const menuItems = [
         :class="[
           $route.path === item.path 
             ? 'bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 font-semibold shadow-sm shadow-indigo-100/50 dark:shadow-none' 
-            : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400'
+            : 'text-neutral-500 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:text-indigo-600 dark:hover:text-indigo-400'
         ]"
       >
         <svg class="w-5 h-5 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">

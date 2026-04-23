@@ -42,7 +42,7 @@ const goToLogin = () => router.push('/login')
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+  <div class="min-h-screen flex items-center justify-center bg-neutral-50 p-4">
     
     <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
       
@@ -52,47 +52,47 @@ const goToLogin = () => router.push('/login')
             <span class="text-white text-2xl font-bold">P</span>
           </div>
         </div>
-        <h1 class="text-3xl font-bold text-slate-800">Create an Account</h1>
-        <p class="text-slate-500 mt-2">Start your productivity journey today</p>
+        <h1 class="text-3xl font-bold text-neutral-800">Create an Account</h1>
+        <p class="text-neutral-500 mt-2">Start your productivity journey today</p>
       </div>
       
       <form @submit.prevent="handleRegister" class="space-y-4">
         <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+          <label class="block text-sm font-medium text-neutral-700 mb-1">Full Name</label>
           <input 
             type="text" 
             v-model="fullName" 
             placeholder="What should we call you?"
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-slate-50 focus:bg-white"
+            class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-neutral-50 focus:bg-white"
             required
           >
         </div>
         
         <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+          <label class="block text-sm font-medium text-neutral-700 mb-1">Email</label>
           <input 
             type="email" 
             v-model="email" 
             placeholder="Enter your email"
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-slate-50 focus:bg-white"
+            class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-neutral-50 focus:bg-white"
             required
           >
         </div>
         
         <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+          <label class="block text-sm font-medium text-neutral-700 mb-1">Password</label>
           <div class="relative">
             <input 
               :type="showPasswordValue ? 'text' : 'password'" 
               v-model="password" 
               placeholder="Create a password"
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-slate-50 focus:bg-white pr-12"
+              class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-neutral-50 focus:bg-white pr-12"
               required
             >
             <button 
               type="button" 
               @click="togglePasswordVisibility"
-              class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 focus:outline-none"
             >
               {{ showPasswordValue ? '🙈' : '👁️' }}
             </button>
@@ -100,19 +100,19 @@ const goToLogin = () => router.push('/login')
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">Confirm Password</label>
+          <label class="block text-sm font-medium text-neutral-700 mb-1">Confirm Password</label>
           <div class="relative">
             <input 
               :type="showPasswordValue ? 'text' : 'password'" 
               v-model="confirmPassword" 
               placeholder="Confirm your password"
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-slate-50 focus:bg-white pr-12"
+              class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-neutral-50 focus:bg-white pr-12"
               required
             >
             <button 
               type="button" 
               @click="togglePasswordVisibility"
-              class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 focus:outline-none"
             >
               {{ showPasswordValue ? '🙈' : '👁️' }}
             </button>
@@ -136,7 +136,7 @@ const goToLogin = () => router.push('/login')
         </button>
       </form>
 
-      <p class="text-center text-sm text-slate-600 pt-2">
+      <p class="text-center text-sm text-neutral-600 pt-2">
         Already have an account? 
         <button @click="goToLogin" class="font-semibold text-indigo-600 hover:text-indigo-700 focus:outline-none hover:underline">
           Sign In

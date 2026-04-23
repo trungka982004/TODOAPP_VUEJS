@@ -59,9 +59,9 @@ const draggableHabits = computed({
     <!-- Empty State -->
     <div 
       v-else 
-      class="text-center py-12 bg-slate-50 dark:bg-slate-800/50 rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-700 transition-colors duration-200"
+      class="text-center py-12 bg-neutral-50 dark:bg-neutral-800/50 rounded-xl border-2 border-dashed border-neutral-200 dark:border-neutral-700 transition-colors duration-200"
     >
-      <p class="text-slate-500 dark:text-slate-400 font-medium">No habits found. Start by adding one above!</p>
+      <p class="text-neutral-500 dark:text-neutral-400 font-medium">No habits found. Start by adding one above!</p>
     </div>
   </div>
 </template>

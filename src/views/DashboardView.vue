@@ -32,8 +32,8 @@ onMounted(async () => {
   <div class="space-y-8">
     <header class="space-y-6">
       <div>
-        <h1 class="text-3xl font-bold text-slate-800 dark:text-slate-100">Dashboard</h1>
-        <p class="text-slate-500 dark:text-slate-400">Track your progress and stay productive.</p>
+        <h1 class="text-3xl font-bold text-neutral-800 dark:text-neutral-100">Dashboard</h1>
+        <p class="text-neutral-500 dark:text-neutral-400">Track your progress and stay productive.</p>
       </div>
       
       <!-- AI Goal Coach -->
@@ -44,7 +44,7 @@ onMounted(async () => {
       <!-- Goals Overview -->
       <section class="space-y-4">
         <div class="flex items-center justify-between">
-          <h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">Recent Goals</h2>
+          <h2 class="text-xl font-bold text-neutral-800 dark:text-neutral-100">Recent Goals</h2>
           <RouterLink to="/goals" class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">View All</RouterLink>
         </div>
         <BaseCard>
@@ -55,7 +55,7 @@ onMounted(async () => {
       <!-- Habits Overview -->
       <section class="space-y-4">
         <div class="flex items-center justify-between">
-          <h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">Daily Habits</h2>
+          <h2 class="text-xl font-bold text-neutral-800 dark:text-neutral-100">Daily Habits</h2>
           <RouterLink to="/habits" class="text-sm font-semibold text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300">View All</RouterLink>
         </div>
         <BaseCard>

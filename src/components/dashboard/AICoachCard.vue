@@ -35,7 +35,7 @@ onMounted(() => {
     
     <div class="flex items-start gap-4 p-1 relative z-10">
       <div class="shrink-0">
-        <div class="w-12 h-12 rounded-2xl bg-white dark:bg-slate-800 flex items-center justify-center text-2xl shadow-sm border border-indigo-100 dark:border-indigo-500/40">
+        <div class="w-12 h-12 rounded-2xl bg-white dark:bg-neutral-800 flex items-center justify-center text-2xl shadow-sm border border-indigo-100 dark:border-indigo-500/40">
           🤖
         </div>
       </div>
@@ -51,7 +51,7 @@ onMounted(() => {
            <div class="h-4 bg-indigo-100 dark:bg-indigo-900/40 rounded-full w-full animate-pulse"></div>
            <div class="h-4 bg-indigo-100 dark:bg-indigo-900/40 rounded-full w-3/4 animate-pulse"></div>
         </div>
-        <p v-else class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed italic">
+        <p v-else class="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed italic">
           "{{ advice || 'Calculating the best path for your journey...' }}"
         </p>
       </div>

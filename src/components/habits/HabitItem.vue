@@ -76,7 +76,7 @@ const last30Days = ref(getLast30Days())
   <div>
     <div class="habit-item group">
     <!-- Drag Handle -->
-    <div v-if="!isEditing" class="drag-handle cursor-move opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 pr-2 -ml-2 flex items-center" title="Drag to reorder">
+    <div v-if="!isEditing" class="drag-handle cursor-move opacity-0 group-hover:opacity-100 transition-opacity text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 pr-2 -ml-2 flex items-center" title="Drag to reorder">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg>
     </div>
 
@@ -108,8 +108,8 @@ const last30Days = ref(getLast30Days())
           class="cursor-pointer"
           :class="[
             habit.done
-              ? 'line-through text-slate-400 dark:text-slate-500'
-              : 'text-slate-900 dark:text-slate-100 font-medium'
+              ? 'line-through text-neutral-400 dark:text-neutral-500'
+              : 'text-neutral-900 dark:text-neutral-100 font-medium'
           ]"  
         >
           {{ habit.name }}
@@ -178,10 +178,10 @@ const last30Days = ref(getLast30Days())
         variant="primary" 
         @click="showCalendar = !showCalendar" 
         class="p-2 transition-opacity"
-        :class="[ showCalendar ? 'opacity-100 bg-slate-100 dark:bg-slate-700' : 'opacity-0 group-hover:opacity-100' ]"
+        :class="[ showCalendar ? 'opacity-100 bg-neutral-100 dark:bg-neutral-700' : 'opacity-0 group-hover:opacity-100' ]"
         title="Habit Calendar"
       >
-        <svg class="habit-icon" :class="{ 'text-sky-500': showCalendar }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="habit-icon" :class="{ 'text-primary-500': showCalendar }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
         </svg>
       </BaseButton>
@@ -189,10 +189,10 @@ const last30Days = ref(getLast30Days())
   </div>
 
   <!-- Calendar Activity Box -->
-  <div v-if="showCalendar" class="pl-4 pr-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-t-0 border-slate-200 dark:border-slate-700 rounded-b-lg -mt-2 mb-2 transition-colors duration-200">
+  <div v-if="showCalendar" class="pl-4 pr-4 py-3 bg-neutral-50 dark:bg-neutral-800/50 border border-t-0 border-neutral-200 dark:border-neutral-700 rounded-b-lg -mt-2 mb-2 transition-colors duration-200">
     <div class="flex items-center justify-between mb-2">
-      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Last 30 Days</span>
-      <span class="text-xs text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap">
+      <span class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Last 30 Days</span>
+      <span class="text-xs text-neutral-500 dark:text-neutral-400 font-medium whitespace-nowrap">
         {{ (habit.completedDates || []).length }} completions
       </span>
     </div>
@@ -204,7 +204,7 @@ const last30Days = ref(getLast30Days())
         :class="[
           (habit.completedDates || []).includes(day.date)
             ? 'bg-emerald-400 dark:bg-emerald-500/80 text-white hover:bg-emerald-500 dark:hover:bg-emerald-500'
-            : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-600'
+            : 'bg-neutral-200 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-300 dark:hover:bg-neutral-600'
         ]"
         :title="day.date"
       >
@@ -219,15 +219,15 @@ const last30Days = ref(getLast30Days())
 @reference "../../assets/main.css";
 
 .habit-item {
-  @apply flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-sky-400 dark:hover:border-sky-500 hover:shadow-md transition-all duration-200;
+  @apply flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:border-primary-400 dark:hover:border-primary-500 hover:shadow-md transition-all duration-200;
 }
 
 .habit-input {
-  @apply bg-slate-50 dark:bg-slate-900 border-b-2 border-sky-500 outline-none px-2 py-1 text-sm font-medium text-slate-900 dark:text-slate-100 transition-all duration-200;
+  @apply bg-neutral-50 dark:bg-neutral-900 border-b-2 border-primary-500 outline-none px-2 py-1 text-sm font-medium text-neutral-900 dark:text-neutral-100 transition-all duration-200;
 }
 
 .habit-text {
-  @apply block text-sm transition-all duration-200 dark:text-slate-100;
+  @apply block text-sm transition-all duration-200 dark:text-neutral-100;
 }
 
 .habit-action-button {

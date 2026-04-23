@@ -6,7 +6,7 @@ const route = useRoute()
 </script> 
 
 <template>
-  <div id="app-container" class="min-h-screen bg-slate-50">
+  <div id="app-container" class="min-h-screen bg-neutral-50">
     <!-- RENDER WITHOUT LAYOUT FOR GUEST PAGES (LOGIN/REGISTER) -->
     <template v-if="route.meta.requiresGuest">
       <RouterView />

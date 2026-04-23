@@ -23,13 +23,13 @@ const barColor = computed(() => {
 
 <template>
   <div class="space-y-2 progress-bar">
-    <div class="flex justify-between text-xs font-medium text-slate-500 uppercase tracking-wider">
+    <div class="flex justify-between text-xs font-medium text-neutral-500 uppercase tracking-wider">
       <span>{{ label }}</span>
       <span :class="barColor.replace('bg-', 'text-')" class="font-bold transition-colors duration-300">
         {{ progress }}%
       </span>
     </div>
-    <div class="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+    <div class="h-2 w-full bg-neutral-200 rounded-full overflow-hidden">
       <div 
         class="h-full transition-all duration-500 ease-out"
         :class="barColor"

@@ -15,7 +15,7 @@ defineEmits(['toggle'])
       :class="[
         checked
           ? 'bg-green-500 border-green-500 dark:bg-emerald-500 dark:border-emerald-500'
-          : 'border-slate-300 dark:border-slate-600 hover:border-sky-500 dark:hover:border-sky-400 cursor-pointer'
+          : 'border-neutral-300 dark:border-neutral-600 hover:border-primary-500 dark:hover:border-primary-400 cursor-pointer'
       ]"
     >
       <svg
