@@ -9,6 +9,7 @@ import HabitList from "../components/habits/HabitList.vue"
 
 import { useSettingStore } from "../stores/settingStore"
 import AICoachCard from "../components/dashboard/AICoachCard.vue"
+import PomodoroTimer from "../components/dashboard/PomodoroTimer.vue"
 import { notificationService } from "../services/notificationService"
 
 const goalStore = useGoalStore()
@@ -36,8 +37,13 @@ onMounted(async () => {
         <p class="text-neutral-500 dark:text-neutral-400">Track your progress and stay productive.</p>
       </div>
       
-      <!-- AI Goal Coach -->
-      <AICoachCard v-if="settingStore.aiActive" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- AI Goal Coach -->
+        <AICoachCard v-if="settingStore.aiActive" class="h-full" />
+        
+        <!-- Pomodoro Timer -->
+        <PomodoroTimer class="h-full" />
+      </div>
     </header>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
