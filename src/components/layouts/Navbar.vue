@@ -8,9 +8,16 @@ const route = useRoute()
 const settingStore = useSettingStore()
 const notiStore = useNotificationStore()
 
+const greeting = computed(() => {
+  const hour = new Date().getHours()
+  if (hour < 12) return 'Good Morning'
+  if (hour < 18) return 'Good Afternoon'
+  return 'Good Evening'
+})
+
 const pageTitle = computed(() => {
   const titles = {
-    '/': 'Dashboard Overview',
+    '/': `${greeting.value}, ${settingStore.userProfile.name} 👋`,
     '/goals': 'Set Your Goals',
     '/habits': 'Daily Habits',
     '/settings': 'Application Settings',
@@ -27,7 +34,7 @@ const handleClearAll = () => {
 
 <template>
   <header class="h-16 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 px-8 flex items-center justify-between sticky top-0 z-50 w-full transition-colors duration-300">
-    <h2 class="text-lg font-bold text-neutral-800 dark:text-neutral-100">{{ pageTitle }}</h2>
+    <h2 class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 tracking-tight drop-shadow-sm">{{ pageTitle }}</h2>
     
     <div class="flex items-center gap-4">
       <button @click="settingStore.toggleDarkMode()" class="p-2 text-neutral-400 hover:text-primary-500 transition-colors" title="Toggle Dark Mode">
